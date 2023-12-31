@@ -1,7 +1,7 @@
 ---
 title: "Lab 01 - Hello R"
-author: "Insert your name here"
-date: "Insert date here"
+author: Eric!
+date: 12.30.23
 output: 
   html_document: 
     fig_height: 4
@@ -19,12 +19,33 @@ library(datasauRus)
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
+Based on the help file, how many rows and how many columns does the datasaurus_dozen file have? What are the variables included in the data frame? Add your responses to your lab report.
+
+According to the help, there are 1846 rows and 3 variables. I was confused by this at first, because if there are lots of data sets, how can there just be 3 variables? But I'm now thinking of it that there are 3 *columns* where 2 of the columns are essentially *x* and *y*, and x and y take on different meanings in the different data sets (e.g., for dino, dots, etc). Is that accurate?
+
+The three variables / columns are:  
+(1) which data set the data are from
+(2) x-values
+(3) y-values
+
+The different data sets are:
+
+ 1 away      
+ 2 bullseye  
+ 3 circle    
+ 4 dino      
+ 5 dots      
+ 6 h_lines   
+ 7 high_lines
+ 8 slant_down
+ 9 slant_up  
+10 star      
+11 v_lines   
+12 wide_lines
+13 x_shape  
+
 
 ### Exercise 2
-
-The answers for this exercise are given for you below.
-But you should clean up some of the narrative so that it only includes what you want to turn in.
 
 First let's plot the data in the dino dataset:
 
@@ -36,6 +57,13 @@ ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
   geom_point()
 ```
 
+The graph looks like a dinosaur. Note if you change the commands to:
+
+ggplot(data = dino_data, mapping = aes(x = y, y = x)) +
+  geom_point()
+
+the dinosaur is lying down!
+
 And next calculate the correlation between `x` and `y` in this dataset:
 
 ```{r cor-dino}
@@ -43,7 +71,11 @@ dino_data %>%
   summarize(r = cor(x, y))
 ```
 
+The correlation is -0.0645
+
 ### Exercise 3
+
+Plot y vs. x for the star dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. Then, calculate the correlation coefficient between x and y for this dataset. How does this value compare to the r of dino?
 
 Add code and narrative as needed.
 Note that the R chunks are labeled with `plot-star` and `cor-star` to provide spaces to place the code for plotting and calculating the correlation coefficient.
@@ -52,14 +84,23 @@ To finish, clean up the narrative by removing these instructions.
 
 
 ```{r plot-star}
+star_data <- datasaurus_dozen %>%
+  filter(dataset == "star")
 
+ggplot(data = star_data, mapping = aes(x = x, y = y)) +
+  geom_point()
 ```
 
-I'm some filler text, you should replace me with more meaningful text...
+The graph looks like a star.
 
 ```{r cor-star}
-
+star_data %>%
+  summarize(r = cor(x, y))
 ```
+
+r = -.0630
+
+Basically the same correlation from before. So just based on the linear correlations, the associations between x and y are identical. Hence a good example of why linear relationships don't tell the whole story! :)
 
 ### Exercise 4
 
