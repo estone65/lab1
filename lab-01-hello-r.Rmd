@@ -4,8 +4,9 @@ author: Eric!
 date: 12.30.23
 output: 
   html_document: 
-    fig_height: 4
-    fig_width: 9
+    fig_height: 5.33
+    fig_width: 12
+    theme: sandstone
 ---
 
 ## Load packages and data
@@ -130,6 +131,18 @@ Add code and narrative as needed.
 
 To add R chunks either type out the backticks, curly braces, and the letter `r` or use the Insert chunk button above, green C+.
 
+```{r}
+ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset))+
+  geom_point()+
+  facet_wrap(~ dataset, ncol = 3) +
+  theme(legend.position = "none")
 
+datasaurus_dozen %>%
+  group_by(dataset) %>%
+  summarize(r = cor(x, y)) %>%
+  print(13)
+```
 
+Note when I run the above command it shows the correlations, but when I knitted it the correlations did not appear.
+Which makes me think the second variable (i.e., the correlation) isn't showing up. Shouldn't run and knit produce the same results?
 
