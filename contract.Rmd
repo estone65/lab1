@@ -5,7 +5,7 @@ output: github_document
 params:
   weekonemonday: "2024-01-01"
   thesisdeadline: "2024-03-29"
-  springbreak: "2023-03-01"
+  springbreak: "2023-03-02"
   name: Eric Stone
   labs: 11
   portfolios: 3
