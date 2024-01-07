@@ -24,14 +24,14 @@ I, Eric Stone, agree to :
 
 ## SCHEDULE
 
-Note: This is a draft. Feedback welcome and appreciated! I chose modules
-based on how the names sounded, but I am not certain those are the best
-choices (and it also might be too many labs). Please feel free to
-suggest additions and subtractions based on your knowledge of my
-interests. The only clear constraint is finishing this course by the end
-of March, as I will be leaving for a variety of trips starting in April.
-I left some time after the completion of the course to discuss
-simulations.
+Note: This is a draft, which needs to be revised with the original lab 5
+in it. Feedback welcome and appreciated! I chose modules based on how
+the names sounded, but I am not certain those are the best choices (and
+it also might be too many labs). Please feel free to suggest additions
+and subtractions based on your knowledge of my interests. The only clear
+constraint is finishing this course by the end of March, as I will be
+leaving for a variety of trips starting in April. I left some time after
+the completion of the course to discuss simulations.
 
 - [ ] Module 01, 01/01 - 01/05 : What is Data Science and Meet the
   Toolkit
