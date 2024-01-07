@@ -14,6 +14,17 @@ output:
 ```{r load-packages, message=FALSE}
 library(tidyverse) 
 library(datasauRus)
+
+# install fun themes
+if (!requireNamespace("ThemePark", quietly = TRUE)) {
+    remotes::install_github("MatthewBJane/ThemePark")
+}
+library(ThemePark)
+
+
+# Set options to print all rows of data frames/tibbles
+options(tibble.print_max = Inf)  # For tibbles
+options(max.print = .Machine$integer.max)  # For data frames
 ```
 
 ## Exercises
@@ -46,6 +57,12 @@ The different data sets are:
 13 x_shape  
 
 
+```{r}
+nrow(datasaurus_dozen)
+ncol(datasaurus_dozen)
+datasaurus_dozen %>% select(dataset) %>% unique() %>% print(n = Inf)
+```
+
 ### Exercise 2
 
 First let's plot the data in the dino dataset:
@@ -55,7 +72,9 @@ dino_data <- datasaurus_dozen %>%
   filter(dataset == "dino")
 
 ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
-  geom_point()
+  geom_point()+
+    labs(title = "GOT Scatter Plot")+
+    theme_gameofthrones()
 ```
 
 The graph looks like a dinosaur. Note if you change the commands to:
@@ -89,12 +108,14 @@ star_data <- datasaurus_dozen %>%
   filter(dataset == "star")
 
 ggplot(data = star_data, mapping = aes(x = x, y = y)) +
-  geom_point()
+  geom_point() +
+    labs(title = "Barbie Scatter Plot")+
+    theme_barbie()
 ```
 
 The graph looks like a star.
 
-```{r cor-star}
+```{r cor-star,tidy.opts=list(width.cutoff=5)}
 star_data %>%
   summarize(r = cor(x, y))
 ```
@@ -110,12 +131,14 @@ Note that two R chunks are given but they are not labeled.
 Use the convention from above to name them appropriately.
 
 
-```{r}
+```{r, circle}
 circle_data <- datasaurus_dozen %>%
   filter(dataset == "circle")
 
 ggplot(data = circle_data, mapping = aes(x = x, y = y)) +
-  geom_point()
+  geom_point()+
+    labs(title = "Slytherin Scatter Plot")+
+    theme_slytherin()
 ```
 
 ```{r}
@@ -132,17 +155,20 @@ Add code and narrative as needed.
 To add R chunks either type out the backticks, curly braces, and the letter `r` or use the Insert chunk button above, green C+.
 
 ```{r}
+
 ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset))+
   geom_point()+
-  facet_wrap(~ dataset, ncol = 3) +
-  theme(legend.position = "none")
+  facet_wrap(~ dataset, ncol = 3) +  
+  labs(title = "Barbie Scatter Plot")+
+  theme_barbie(legend.position = "none")
 
 datasaurus_dozen %>%
   group_by(dataset) %>%
   summarize(r = cor(x, y)) %>%
-  print(13)
+  print(n=Inf)  
 ```
 
 Note when I run the above command it shows the correlations, but when I knitted it the correlations did not appear.
 Which makes me think the second variable (i.e., the correlation) isn't showing up. Shouldn't run and knit produce the same results?
 
+> That's a good question. So they should if you give it explicit print options, but otherwise, the defaults provided in R studio and the defaults provided in knitr might not be the same. You'll also see this with digits etc. So you can always specify how you would like the information to appear, like I've done in this version.
